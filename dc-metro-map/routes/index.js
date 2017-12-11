@@ -5,28 +5,28 @@ var rest = require('restler');
 //-----------------------------------------------------------------------------
 // CONSTANTS AND HELPERS
 //-----------------------------------------------------------------------------
-var API_KEY_PLACEHOLDER = process.env.WMATA_API_KEY || '40a095f3e8a641e48253988160cf15ad';
+var API_KEY_PLACEHOLDER = process.env.WMATA_API_KEY || '0fe0c5feaef44317b49d842ef0fb0f23';
 var BEERME = process.env.BEERME || false;
 var RAINBOW = process.env.RAINBOW || false;
 console.log("using WMATA API Key - " + API_KEY_PLACEHOLDER);
 if (BEERME == 'true') { console.log("Beer Me! "); }
 if (RAINBOW == 'true') { console.log("Rainbows! "); }
 
-// var DCBEER = {
-//     type: "FeatureCollection",
-//     features: [{
-//         type: "Feature",
-//         geometry: {
-//             type: "Point",
-//             coordinates: [-77.009003, 38.889931]
-//         },
-//         properties: {
-//             "name": "BEER",
-//             "marker-color": "#000000",
-//             "marker-symbol": "beer",
-//         }
-//     }]
-// };
+ var DCBEER = {
+     type: "FeatureCollection",
+     features: [{
+         type: "Feature",
+         geometry: {
+             type: "Point",
+             coordinates: [-77.009003, 38.889931]
+         },
+         properties: {
+             "name": "BEER",
+             "marker-color": "#000000",
+             "marker-symbol": "beer",
+         }
+     }]
+ };
 
 //-----------------------------------------------------------------------------
 // ROUTES
@@ -73,14 +73,14 @@ router.get('/busses.json', function(req, res, next) {
     query : { Lat: 38.889931, Lon: -77.009003, Radius: 32186.9 },
     headers : { api_key: API_KEY_PLACEHOLDER }
   }).on('complete', function(data) {
-    console.log("GET on " + WMATA_URL + " data out:");
-    console.log(data); // auto convert to object 
+    //console.log("GET on " + WMATA_URL + " data out:");
+    //console.log(data); // auto convert to object 
 
     // TODO error handling of "statusCode: 401"
     // TODO error handling for valid geo JSON
 
     res.send(wmataJsonToGeoJson(data));
-    //res.send(DCBEER);  // uncomment to test with static JSON data - a beer icon center on DC
+    res.send(DCBEER);  // uncomment to test with static JSON data - a beer icon center on DC
   });
 });
 
