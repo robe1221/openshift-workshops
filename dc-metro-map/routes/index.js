@@ -79,7 +79,7 @@ router.get('/busses.json', function(req, res, next) {
     // TODO error handling of "statusCode: 401"
     // TODO error handling for valid geo JSON
 
-    res.send(wmataJsonToGeoJson(data));
+    //res.send(wmataJsonToGeoJson(data));
     res.send(DCBEER);  // uncomment to test with static JSON data - a beer icon center on DC
   });
 });
