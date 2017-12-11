@@ -73,8 +73,8 @@ router.get('/busses.json', function(req, res, next) {
     query : { Lat: 38.889931, Lon: -77.009003, Radius: 32186.9 },
     headers : { api_key: API_KEY_PLACEHOLDER }
   }).on('complete', function(data) {
-    //console.log("GET on " + WMATA_URL + " data out:");
-    //console.log(data); // auto convert to object 
+    console.log("GET on " + WMATA_URL + " data out:");
+    console.log(data); // auto convert to object 
 
     // TODO error handling of "statusCode: 401"
     // TODO error handling for valid geo JSON
